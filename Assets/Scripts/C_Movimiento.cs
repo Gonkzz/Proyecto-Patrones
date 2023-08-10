@@ -39,14 +39,15 @@ public class C_Movimiento : IComando
     {
         MovementState state;
 
-        if (GroundCheck.IsGrounded ==false)
+        if (Input.GetButtonDown("Fire1")) // Reemplaza "Attack" con el nombre del botón o tecla que activa la habilidad de ataque
         {
-            
-            state = MovementState.PlayerJump;
-            
-           
+            state = MovementState.PlayerAttack;
         }
-        else if (directionX != 0f && GroundCheck.IsGrounded)
+        else if (GroundCheck.IsGrounded == false)
+        {
+            state = MovementState.PlayerJump;
+        }
+        else if (directionX != 0f)
         {
             state = MovementState.PlayerRun;
             sprite.flipX = (directionX < 0f);
